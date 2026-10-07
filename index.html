@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Générateur de fiches d'exercices — Typst</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h1>Fiches de maths</h1>
+      <p>Générateur d'exercices en Typst</p>
+    </div>
+
+    <nav class="theme-list" id="theme-list" aria-label="Choix du thème"></nav>
+
+    <div class="sidebar-section" id="params-section">
+      <h2>Paramètres</h2>
+      <form id="params-form"></form>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Mise en forme</h2>
+      <label class="field field-inline">
+        <span>Format de page</span>
+        <select id="paper-size">
+          <option value="a5" selected>A5</option>
+          <option value="a4">A4</option>
+        </select>
+      </label>
+      <label class="field field-checkbox">
+        <input type="checkbox" id="include-correction" checked />
+        <span>Inclure le corrigé (page suivante)</span>
+      </label>
+    </div>
+
+    <button id="generate-btn" class="btn btn-primary btn-block">
+      🎲 Générer une nouvelle fiche
+    </button>
+  </aside>
+
+  <main class="workspace">
+    <header class="workspace-header">
+      <div>
+        <h2 id="theme-title">Choisissez un thème</h2>
+        <p id="theme-description" class="muted"></p>
+      </div>
+      <div class="actions">
+        <button id="download-typ-btn" class="btn btn-secondary" disabled>
+          ⬇️ Télécharger le .typ
+        </button>
+        <button id="download-pdf-btn" class="btn btn-secondary" disabled>
+          📄 Générer le PDF
+        </button>
+      </div>
+    </header>
+
+    <div id="status-bar" class="status-bar" hidden></div>
+
+    <section class="code-panel">
+      <div class="code-panel-header">
+        <span>Code Typst généré</span>
+        <button id="copy-btn" class="btn btn-ghost" disabled>Copier</button>
+      </div>
+      <pre id="code-view" class="code-view"><code id="code-content"></code></pre>
+    </section>
+  </main>
+
+</div>
+
+<script src="themes.js"></script>
+<script src="typst-template.js"></script>
+<script src="pdf-export.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
