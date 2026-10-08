@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiches de maths</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>Fiches de maths</h1>
+        <p>Générateur d'exercices en Typst</p>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Thèmes</h2>
+        <div class="theme-list" id="theme-list"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Paramètres</h2>
+        <form id="params-form"></form>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Mise en forme</h2>
+        <label class="field">
+          <span>Nombre de pages</span>
+          <input type="number" id="page-count" min="1" max="10" value="1" />
+        </label>
+        <label class="field field-inline">
+          <span>Format de page</span>
+          <select id="paper-size">
+            <option value="a5" selected>A5</option>
+            <option value="a4">A4</option>
+          </select>
+        </label>
+        <label class="field field-checkbox">
+          <input type="checkbox" id="include-correction" />
+          <span>Inclure le corrigé (page suivante)</span>
+        </label>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="generate-btn">🎲 Générer une nouvelle fiche</button>
+    </aside>
+
+    <main class="workspace">
+      <div class="workspace-header">
+        <div>
+          <h2 id="theme-title">—</h2>
+          <p class="muted" id="theme-description">—</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-ghost" id="copy-btn" disabled>Copier le code</button>
+          <button class="btn btn-ghost" id="download-typ-btn" disabled>⬇️ Télécharger le .typ</button>
+          <button class="btn btn-ghost" id="download-pdf-btn" disabled>📄 Générer le PDF</button>
+        </div>
+      </div>
+
+      <div class="status-bar" id="status-bar" hidden></div>
+
+      <div class="code-panel">
+        <div class="code-panel-header">
+          <span>Code Typst généré</span>
+        </div>
+        <pre class="code-view"><code id="code-content"><span class="empty-hint">Choisissez un thème puis cliquez sur « Générer une nouvelle fiche ».</span></code></pre>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="themes.js"></script>
+  <script src="typst-template.js"></script>
+  <script src="pdf-export.js"></script>
+  <script src="app.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" nonce="zQI/TWBQqVKn6eWBkhYjmw==" data-cf-beacon='{"version":"2024.11.0","token":"36b4216ae2dc4d5488c249161e71fe1e","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
