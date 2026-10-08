@@ -110,6 +110,46 @@ body {
   margin-top: 0.1rem;
 }
 
+/* Groupes de thèmes (thématiques globales, repliables) */
+
+.theme-group {
+  border: 0;
+  margin: 0;
+}
+
+.theme-group summary {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--chalk-dim);
+  font-weight: 600;
+  padding: 0.35rem 0.2rem;
+}
+
+.theme-group summary::-webkit-details-marker {
+  display: none;
+}
+
+.theme-group summary::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid currentColor;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: transform 0.15s ease;
+}
+
+.theme-group[open] summary::before {
+  transform: rotate(90deg);
+}
+
 
 .sidebar-section {
   border-top: 1px solid rgba(243, 239, 224, 0.15);
@@ -281,6 +321,14 @@ body {
   color: var(--danger);
 }
 
+.workspace-panels {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.1rem;
+  flex: 1;
+  min-height: 0;
+}
+
 .code-panel {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -323,6 +371,71 @@ body {
   color: #6b7269;
   font-family: var(--sans);
   font-size: 0.9rem;
+}
+
+/* Panneau d'aperçu (colonne de droite) */
+
+.preview-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffefb;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.preview-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.82rem;
+  color: #6b7269;
+  background: #f8f6f0;
+}
+
+.preview-body {
+  position: relative;
+  flex: 1;
+  min-height: 320px;
+}
+
+.preview-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.preview-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #6b7269;
+  background: #fffefb;
+}
+
+.preview-hint[hidden] {
+  display: none;
+}
+
+.preview-hint.error {
+  color: var(--danger);
+  background: var(--danger-bg);
+}
+
+@media (max-width: 1100px) {
+  .workspace-panels {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 860px) {

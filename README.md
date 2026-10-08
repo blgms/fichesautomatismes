@@ -10,8 +10,14 @@ syntaxe **Typst**.
    Gardez `fast-track.png` dans le même dossier (icône d'en-tête du gabarit).
 2. Choisissez un thème dans le menu de gauche, ajustez les paramètres.
 3. Cliquez sur **🎲 Générer une nouvelle fiche** pour tirer de nouvelles
-   valeurs aléatoires (le code Typst s'affiche à droite).
-4. Téléchargez :
+   valeurs aléatoires (le code Typst s'affiche à gauche).
+4. Consultez l'**aperçu** dans la colonne de droite : le document est compilé
+   automatiquement avec le même moteur que le bouton « Générer le PDF »
+   (typst.ts, chargé depuis un CDN au premier usage ; connexion internet
+   requise la première fois). Le bouton **Actualiser l'aperçu** relance la
+   compilation, utile après une coupure réseau ; sans internet, le code et
+   le téléchargement du `.typ` restent disponibles.
+5. Téléchargez :
    - **⬇️ Télécharger le .typ** : le fichier source Typst, toujours
      disponible, sans connexion internet (le compiler avec la CLI Typst
      exige que `fast-track.png` soit à côté du fichier, ou qu'on retire
@@ -102,6 +108,7 @@ Tout se passe dans `themes.js`. Un thème est un objet avec :
 
 ```js
 const monTheme = {
+  category: "Nombres", // thématique globale du menu latéral (voir ci-dessous)
   title: "Titre affiché",
   description: "Phrase courte affichée sous le titre",
   paramsForm: [
@@ -132,6 +139,25 @@ const THEMES = {
 
 Il apparaîtra automatiquement dans le menu latéral, avec son formulaire de
 paramètres généré dynamiquement.
+
+### Regroupement des thèmes dans le menu latéral
+
+Le menu latéral regroupe les thèmes par thématique globale, définie par le
+champ `category` de chaque thème (groupes repliables, ouverts par défaut ;
+le groupe du thème sélectionné se rouvre automatiquement). L'ordre des
+groupes suit leur première apparition dans le registre `THEMES`.
+
+Catégories actuelles :
+
+- **Calcul mental** : calcul mental (tables), additions, soustractions,
+  pourcentages
+- **Nombres** : comparaison de décimaux, arrondis, puissances de 10
+- **Fractions** : comparaison de fractions
+- **Grandeurs et mesures** : conversions d'unités, vitesse moyenne
+- **Géométrie** : aires et périmètres
+
+Un thème sans `category` apparaît sous « Autres thèmes ». Pour créer un
+nouveau groupe, il suffit d'utiliser une nouvelle valeur de `category`.
 
 ### Règles Typst pour que la compilation réussisse
 

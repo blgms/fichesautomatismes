@@ -104,10 +104,7 @@ function buildCorrectionPage(theme, generated, index, total) {
   const correctionGrid = generated.correctionBlocks.join(",\n  ");
   // À partir de 2 pages, les corrigés sont numérotés pour être appariables
   // aux fiches ; avec une seule page, l'en-tête reste inchangé.
-  const heading =
-    total > 1
-      ? `Corrigé ${index + 1}/${total} -- ${theme.title}`
-      : `Corrigé -- ${theme.title}`;
+  const heading = `Corrigé -- ${theme.title}`;
   // Le saut de page est précédé d'une ligne vide, comme dans le gabarit
   // d'origine (la page précédente se termine déjà par un retour à la ligne).
   const pageBreak = "\n#pagebreak()\n";

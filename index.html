@@ -29,7 +29,7 @@
         <h2>Mise en forme</h2>
         <label class="field">
           <span>Nombre de pages</span>
-          <input type="number" id="page-count" min="1" max="10" value="1" />
+          <input type="number" id="page-count" min="1" max="100" value="1" />
         </label>
         <label class="field field-inline">
           <span>Format de page</span>
@@ -62,11 +62,26 @@
 
       <div class="status-bar" id="status-bar" hidden></div>
 
-      <div class="code-panel">
-        <div class="code-panel-header">
-          <span>Code Typst généré</span>
+      <div class="workspace-panels">
+        <div class="code-panel">
+          <div class="code-panel-header">
+            <span>Code Typst généré</span>
+          </div>
+          <pre class="code-view"><code id="code-content"><span class="empty-hint">Choisissez un thème puis cliquez sur « Générer une nouvelle fiche ».</span></code></pre>
         </div>
-        <pre class="code-view"><code id="code-content"><span class="empty-hint">Choisissez un thème puis cliquez sur « Générer une nouvelle fiche ».</span></code></pre>
+
+        <div class="preview-panel">
+          <div class="preview-panel-header">
+            <span>Aperçu du document</span>
+            <button class="btn btn-ghost" id="refresh-preview-btn">Actualiser l'aperçu</button>
+          </div>
+          <div class="preview-body">
+            <iframe class="preview-frame" id="preview-frame" title="Aperçu du document généré"></iframe>
+            <div class="preview-hint" id="preview-hint">
+              <span id="preview-hint-text">L'aperçu apparaîtra ici après la première génération.</span>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 

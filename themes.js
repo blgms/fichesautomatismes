@@ -6,8 +6,13 @@
  * POUR AJOUTER UN NOUVEAU THÈME :
  * 1. Copiez un objet existant (ex. THEMES.multiplication) comme point de départ.
  * 2. Donnez-lui une clé unique (ex. "additions") et un "title".
- * 3. Décrivez ses paramètres dans "paramsForm" (voir les types disponibles ci-dessous).
- * 4. Écrivez la fonction "generate(params)" qui renvoie :
+ * 3. Ajoutez un "category" : thématique globale sous laquelle le thème est
+ *    regroupé dans le menu latéral (ex. "Nombres", "Calcul mental",
+ *    "Fractions", "Géométrie", "Grandeurs et mesures"). Les thèmes sans
+ *    catégorie apparaissent sous "Autres thèmes". L'ordre des groupes suit
+ *    leur première apparition dans le registre THEMES.
+ * 4. Décrivez ses paramètres dans "paramsForm" (voir les types disponibles ci-dessous).
+ * 5. Écrivez la fonction "generate(params)" qui renvoie :
  *      {
  *        instructions: "texte affiché au-dessus des exercices",
  *        columns: nombre de colonnes de la grille,
@@ -17,7 +22,7 @@
  *    Chaque bloc doit être un morceau de code Typst valide, encadré par des
  *    crochets [...] (un "contenu" Typst), typiquement de la forme :
  *      [*1.* $2 times 3 = $ #box(width: 1.6cm)[#repeat[.]]]
- * 5. Ajoutez l'objet à THEMES tout en bas de ce fichier.
+ * 6. Ajoutez l'objet à THEMES tout en bas de ce fichier.
  *
  * Astuce nombres : pour respecter les conventions françaises (virgule décimale,
  * espace comme séparateur de milliers), utilisez la fonction Typst
@@ -66,6 +71,7 @@ function hourString(h) {
 
 
 const multiplicationTheme = {
+  category: "Calcul mental",
   title: "Calcul mental",
   description: "Multiplications à trous sur les tables choisies.",
   paramsForm: [
@@ -97,7 +103,7 @@ const multiplicationTheme = {
     }
     const columns = 2 ;
     return {
-      instructions: "*Complète* les multiplications suivantes.",
+      instructions: "*Complèter* les multiplications suivantes.",
       columns,
       exerciseBlocks,
       correctionBlocks,
@@ -108,6 +114,7 @@ const multiplicationTheme = {
 // ---------- Thème 2 : Comparaison de fractions ----------
 
 const fractionsTheme = {
+  category: "Fractions",
   title: "Fractions",
   description: "Comparer deux fractions à l'aide des symboles <, > ou =.",
   paramsForm: [
@@ -139,14 +146,14 @@ const fractionsTheme = {
       const symbol = cross1 === cross2 ? "=" : cross1 > cross2 ? ">" : "<";
 
       exerciseBlocks.push(
-        `[*${i})* #box[$ ${n1}/${d1} $] #box(width: 1cm)[#repeat[.]] #box[$ ${n2}/${d2} $]]`
+        `[*${i})* #box(baseline: 1em)[$ ${n1}/${d1} $] #box(width: 1cm)[#repeat[.]] #box(baseline: 1em)[$ ${n2}/${d2} $]]`
       );
-      correctionBlocks.push(`[*${i})* #box[$ ${n1}/${d1} ${symbol} ${n2}/${d2} $]]`);
+      correctionBlocks.push(`[*${i})* #box(baseline: 1em)[$ ${n1}/${d1} ${symbol} ${n2}/${d2} $]]`);
     }
     const columns = 2 ;
 
     return {
-      instructions: "*Compare* les fractions suivantes avec les symboles <, > ou =.",
+      instructions: "*Comparer* les fractions suivantes avec les symboles <, > ou =.",
       columns,
       exerciseBlocks,
       correctionBlocks,
@@ -157,6 +164,7 @@ const fractionsTheme = {
 // ---------- Thème 3 : Comparaison de nombres décimaux ----------
 
 const decimauxTheme = {
+  category: "Nombres",
   title: "Nombres",
   description: "Comparer deux nombres décimaux.",
   paramsForm: [
@@ -205,6 +213,7 @@ const decimauxTheme = {
 // ---------- Thème 3 : Arrondis de nombres décimaux ----------
 
 const arrondisTheme = {
+  category: "Nombres",
   title: "Arrondis de nombres décimaux",
   description: "Arrondir des nombres décimaux (écriture à la française : virgule).",
   paramsForm: [
@@ -246,6 +255,7 @@ const arrondisTheme = {
 // ---------- Thème 5 : Additions à trous ----------
 
 const additionsTheme = {
+  category: "Calcul mental",
   title: "Additions",
   description: "Additions directes et à trous (a + ? = c).",
   paramsForm: [
@@ -287,6 +297,7 @@ const additionsTheme = {
 // ---------- Thème 6 : Soustractions à trous ----------
 
 const soustractionsTheme = {
+  category: "Calcul mental",
   title: "Soustractions",
   description: "Soustractions et compléments (a − ? = c).",
   paramsForm: [
@@ -327,6 +338,7 @@ const soustractionsTheme = {
 // ---------- Thème 7 : Conversions d'unités ----------
 
 const conversionsTheme = {
+  category: "Grandeurs et mesures",
   title: "Conversions d'unités",
   description: "Convertir des longueurs, masses et capacités.",
   paramsForm: [
@@ -391,6 +403,7 @@ const conversionsTheme = {
 // ---------- Thème 8 : Pourcentages ----------
 
 const pourcentagesTheme = {
+  category: "Calcul mental",
   title: "Pourcentages",
   description: "Calculer mentalement un pourcentage d'une quantité.",
   paramsForm: [
@@ -418,7 +431,7 @@ const pourcentagesTheme = {
     }
     const columns = 2 ;
     return {
-      instructions: "*Calcule* les pourcentages suivants.",
+      instructions: "*Calculer* les pourcentages suivants.",
       columns,
       exerciseBlocks,
       correctionBlocks,
@@ -429,6 +442,7 @@ const pourcentagesTheme = {
 // ---------- Thème 9 : Aires et périmètres ----------
 
 const airesTheme = {
+  category: "Géométrie",
   title: "Aires et périmètres",
   description: "Calculer l'aire et le périmètre de figures usuelles.",
   paramsForm: [
@@ -490,6 +504,7 @@ const airesTheme = {
 // ---------- Thème 10 : Puissances de 10 et notation scientifique ----------
 
 const puissancesTheme = {
+  category: "Nombres",
   title: "Puissances de 10",
   description: "Notation scientifique et calculs de puissances de 10.",
   paramsForm: [
@@ -538,6 +553,7 @@ const puissancesTheme = {
 // ---------- Thème 11 : Vitesse moyenne (v = d / t) ----------
 
 const vitesseTheme = {
+  category: "Grandeurs et mesures",
   title: "Vitesse moyenne",
   description: "Calculer une vitesse, une distance ou une durée (v = d / t).",
   paramsForm: [
